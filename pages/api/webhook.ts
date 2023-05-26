@@ -9,18 +9,17 @@ export default function webhook(request: NextApiRequest, response: NextApiRespon
         const message = request.body.text;
          axios.post(`${BASE_URL}/sendMessage`,
             {chat_id: "339121864" , text: JSON.stringify(request.body)}, 
-            {headers: {'Content-Type': 'application/json'}})
-            .catch(function (error){console.log(error)});
+            {headers: {'Content-Type': 'application/json'}});
          axios.post(`${BASE_URL}/sendMessage`,
             {chat_id: chat_id , text: message}, 
             {headers: {'Content-Type': 'application/json'}})
             .catch(function (error){console.log(error)});
         response.status(200);
-    }catch{
+    }catch(error){
         const chat_id = request.body.chat.id;
         const message = request.body.text;
         const token = process.env.BOT_TOKEN;
-        response.status(200).json({chat: chat_id, message: message, token: token});
+        response.status(200).json({chat: chat_id, message: message, token: token, error: error});
     }
     
 }
