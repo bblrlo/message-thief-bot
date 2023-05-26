@@ -7,9 +7,9 @@ export default async function webhook(request: NextApiRequest, response: NextApi
     
     const prisma = new PrismaClient();
     try{
-        const {id: chat_id, type: chat_type} = request.body.result.chat;
-        const message = request.body.result.text;
-        const {username: sender } = request.body.result.from;
+        const {id: chat_id, type: chat_type} = request.body.message.chat;
+        const message = request.body.message.text;
+        const {username: sender } = request.body.message.from;
         const new_treasure = await prisma.treasure.create({
             data: {
                 chat_id: chat_id,
