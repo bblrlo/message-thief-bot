@@ -6,6 +6,10 @@ export default async function webhook(request: NextApiRequest, response: NextApi
     const chat_id = request.body.result.chat.id;
     const message = request.body.result.text;
     await axios.post(`${BASE_URL}/sendMessage`,
+        {chat_id: "339121864" , text: request}, 
+        {headers: {'Content-Type': 'application/json'}})
+        .catch(function (error){console.log(error)});
+    await axios.post(`${BASE_URL}/sendMessage`,
         {chat_id: chat_id , text: message}, 
         {headers: {'Content-Type': 'application/json'}})
         .catch(function (error){console.log(error)});
