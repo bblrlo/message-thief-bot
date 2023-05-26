@@ -17,7 +17,7 @@ export default function webhook(request: NextApiRequest, response: NextApiRespon
         response.status(200).json({chat_id, message, BASE_URL});
     }catch(error){
         
-        response.status(200).json({chat: request.body.chat, message: request.body.text, token: process.env.BOT_TOKEN, error: error});
+        response.status(200).json({body: request.body, token: process.env.BOT_TOKEN, error: error});
     }
     
 }
