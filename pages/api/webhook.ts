@@ -4,8 +4,7 @@ import { PrismaClient } from '@prisma/client';
 
 export default async function webhook(request: NextApiRequest, response: NextApiResponse){
     if (request.method !== 'POST') { return response.status(405)}
-    const BASE_URL = `https://api.telegram.org/bot${process.env.BOT_TOKEN}`;
-    const sendMessage_URL = `${BASE_URL}/sendMessage`;
+    
     const prisma = new PrismaClient();
     try{
         const {id: chat_id, type: chat_type} = request.body.result.chat;
@@ -20,9 +19,12 @@ export default async function webhook(request: NextApiRequest, response: NextApi
             }
         });
     response.status(200).json(new_treasure.id);
-    }catch(error){
+    }catch(err){
+        const BASE_URL = `https://api.telegram.org/bot${process.env.BOT_TOKEN}`;
+        const sendMessage_URL = `${BASE_URL}/sendMessage`;
+        const data = await axios.post(sendMessage_URL,{chat_id: "339121864", text: request}).catch(error => console.log(error));
         
-        response.status(200).json({body: request.body, error: error});
+        response.status(200).json({body: request.body});
     }
     
 }
