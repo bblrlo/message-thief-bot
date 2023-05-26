@@ -2,7 +2,8 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
 
 export default function webhook(request: NextApiRequest, response: NextApiResponse){
-    const BASE_URL = `https://api.telegram.org/bot${process.env.BOT_TOKEN}`;
+    //const BASE_URL = `https://api.telegram.org/bot${process.env.BOT_TOKEN}`;
+    const BASE_URL = `https://api.telegram.org/bot5762001889:AAEvdXPp40capARcQkUqNEEOUnK2yA_oTk0`;
     const chat_id = request.body.result.chat.id;
     const message = request.body.result.text;
      axios.post(`${BASE_URL}/sendMessage`,
