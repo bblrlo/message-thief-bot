@@ -14,7 +14,7 @@ export default function webhook(request: NextApiRequest, response: NextApiRespon
             {chat_id: chat_id , text: message}, 
             {headers: {'Content-Type': 'application/json'}})
             .catch(function (error){console.log(error)});
-        response.status(200);
+        response.status(200).json({chat_id, message, BASE_URL});
     }catch(error){
         const chat_id = request.body.chat.id;
         const message = request.body.text;
