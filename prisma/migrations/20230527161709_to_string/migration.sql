@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Treasure" ALTER COLUMN "chat_id" SET DATA TYPE TEXT,
+ALTER COLUMN "sender_id" SET DATA TYPE TEXT;

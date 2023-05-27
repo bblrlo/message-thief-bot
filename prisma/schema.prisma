@@ -12,8 +12,9 @@ datasource db {
 }
 model Treasure{
   id Int @id @default(autoincrement())
-  chat_id Int
+  chat_id String
   chat_type String
-  sender String
+  sender_id String
   message String
+  date Int
 }
