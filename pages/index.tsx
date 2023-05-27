@@ -8,7 +8,7 @@ JSON.stringify(this, (key, value) => typeof value === 'bigint' ? value.toString(
 
 export default function Home({
     data
-  } : InferGetStaticPropsType<typeof getStaticProps>) {
+  } : InferGetStaticPropsType<typeof getServerSideProps>) {
       const {treasures} = data
     
   return (
@@ -41,7 +41,7 @@ export default function Home({
   )
 }
 
-export async function getStaticProps(ctx: GetStaticPropsContext){
+export async function getServerSideProps(ctx: GetStaticPropsContext){
   const prisma = new PrismaClient();
   let data = {treasures: [] as Treasures}
   try{
