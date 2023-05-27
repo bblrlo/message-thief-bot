@@ -32,7 +32,7 @@ export default function Home({
             <td>{treasure.chat_type}</td>
             <td>{treasure.sender_id.toString()}</td>
             <td>{treasure.message}</td>
-            <td>{treasure.date.toString()}</td>
+            <td>{new Date(treasure.date*1000).toString()}</td>
           </tr>
         ))}
       </tbody>
